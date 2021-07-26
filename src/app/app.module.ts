@@ -7,6 +7,7 @@ import { AboutModule } from './site/about/about.module';
 import { FilmsModule } from './site/films/films.module';
 import { HomeModule } from './site/home/home.module';
 import { ErrorsModule } from './site/errors/errors.module';
+import { SharedModule } from './site/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ErrorsModule } from './site/errors/errors.module';
     FilmsModule,
     HomeModule,
     ErrorsModule,
+    SharedModule,
     AppRoutingModule
   ],
   providers: [],
