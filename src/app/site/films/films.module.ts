@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FilmsComponent } from './films.component';
 import {Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { SearchformComponent } from './searchform/searchform.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchmovieService } from './services/searchmovie.service';
 
 const routes: Routes = [
   {
@@ -14,10 +16,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [FilmsComponent, SearchformComponent],
+  providers: [SearchmovieService],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forChild(routes)
   ]
 })

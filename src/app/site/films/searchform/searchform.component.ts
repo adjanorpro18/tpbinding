@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SearchmovieService } from '../services/searchmovie.service';
 
 @Component({
   selector: 'app-searchform',
@@ -10,7 +11,8 @@ export class SearchformComponent implements OnInit {
 
   searchForm: FormGroup;
 
-  constructor(private fb: FormBuilder ) { }
+  constructor(private fb: FormBuilder,
+              private searchMovie: SearchmovieService ) { }
 
   // tslint:disable-next-line:typedef
   ngOnInit(){
@@ -22,7 +24,10 @@ export class SearchformComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   startSearch(){
-    console.log(' Recherche lancée ');
+    let action = (data: Object) => {
+      console.log(data);
+    };
+    this.searchMovie.search(action, 'test');
   }
 
 }
