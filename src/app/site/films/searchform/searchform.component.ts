@@ -16,8 +16,9 @@ export class SearchformComponent implements OnInit {
   results: any;
   errors: string;
 
-  constructor(private fb: FormBuilder,
-              private searchMovie: SearchmovieService ) { }
+  constructor(private fb: FormBuilder, // la fabrique de l'instance group
+              private searchMovie: SearchmovieService  // service movie
+              ) { }
 
   // tslint:disable-next-line:typedef
   ngOnInit(){
@@ -45,29 +46,29 @@ export class SearchformComponent implements OnInit {
 
     const title = this.title.valid ? this.title.value : null;
     const year = this.year.valid ? this.year.value : null;
-    // tslint:disable-next-line:prefer-const
-    // tslint:disable-next-line:ban-types
+    const that = this;
 
-    /* *référence vers l'objet courant : 
+    /* *référence vers l'objet courant :
     à cause de la portée des variables dans les Arrow fucntions et les fin de bloc {} (closures) */
 
-   let action = (data: Object) => {
-      if(data['Error']){
-        this.errors = data['Error'];
-        this.results = '';
+    const action = (data: any) => {
+      if (data.Error){
+        that.errors = data.Error;
+        that.results = '';
       }
       else{
-        this.errors = '';
-        this.results = data;
+        that.errors = '';
+        that.results = data;
       }
 
       console.log(data);
     };
     // tslint:disable-next-line:curly
-      if (title)
+    if (title)
         this.searchMovie.search(action, title, year);
-      else
-        this.errors ='Titre non obligatoire !';
+      else {
+        this.errors = 'Titre non obligatoire !';
+      }
 
   }
 
